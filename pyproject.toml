@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pyrelated"
+version = "0.1.0-dev"
+description = "Provide and interact with related work and bibtex bibliography"
+authors = ["Julian Stier <mail@julian-stier.de>"]
+license = "LGPLv3"
+readme = "README.md"
+
+
+packages = [
+    { include = "pyrelated" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+scholarly = "^1.7.11"
+bibtexparser = "^1.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+poetry = "pyrelated.console.application:main"
