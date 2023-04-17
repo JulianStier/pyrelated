@@ -1,7 +1,6 @@
-from pyrelated.console.commands.greet_command import GreetCommand
-
 from cleo.application import Application
 
+from pyrelated.console.commands.greet_command import GreetCommand
 
 application = Application()
 application.add(GreetCommand())

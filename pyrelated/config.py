@@ -1,5 +1,5 @@
-import os
 import configparser
+import os
 
 from pyrelated import __version__
 
@@ -58,8 +58,9 @@ class Cfg:
 
 class Config:
     """
-        cfg.get(Config.some_key) == cfg.some_key
+    cfg.get(Config.some_key) == cfg.some_key
     """
+
     _default_config: dict = {
         "local": {
             "names": {
@@ -72,10 +73,8 @@ class Config:
                 "config": os.path.expanduser("~/.config/pyrelated/"),
                 "cache": os.path.expanduser("~/.cache/pyrelated/"),
             },
-            "names": {
-                "files": {"config": ".pyrelated"}
-            }
-        }
+            "names": {"files": {"config": ".pyrelated"}},
+        },
     }
 
     def __init__(self):
@@ -126,4 +125,3 @@ class Config:
             os.makedirs(path_base)
         with open(path, "w+") as handle:
             self._config.write(handle)
-

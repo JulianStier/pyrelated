@@ -33,4 +33,3 @@ db_yaml.print_meta()
 - Default global config file name *.pyrelated*
 - Default cache directory *~/.cache/pyrelated/*
 - Default proxy config file name *pyrelated.toml*
-

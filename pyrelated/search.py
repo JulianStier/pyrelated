@@ -1,4 +1,4 @@
-from scholarly import scholarly, ProxyGenerator
+from scholarly import ProxyGenerator, scholarly
 
 
 class Result:
@@ -9,7 +9,7 @@ class Result:
 
     @property
     def lightweight(self):
-      return self._is_lightweight
+        return self._is_lightweight
 
     @lightweight.setter
     def lightweight(self, flag):
@@ -37,7 +37,17 @@ class ScholarlySearch:
         for entry in results:
             result = Result()
             result.author_gids = entry["author_id"] if "author_id" in entry else []
-            result.author_names = entry["bib"]["author"] if "bib" in entry and "author" in entry["bib"]["author"] else []
-            result.abstract = entry["bib"]["abstract"] if "bib" in entry and "abstract" in entry["bib"]["abstract"] else ""
-            result.num_citations = int(entry["num_citations"]) if "num_citations" in entry else None
+            result.author_names = (
+                entry["bib"]["author"]
+                if "bib" in entry and "author" in entry["bib"]["author"]
+                else []
+            )
+            result.abstract = (
+                entry["bib"]["abstract"]
+                if "bib" in entry and "abstract" in entry["bib"]["abstract"]
+                else ""
+            )
+            result.num_citations = (
+                int(entry["num_citations"]) if "num_citations" in entry else None
+            )
             yield result

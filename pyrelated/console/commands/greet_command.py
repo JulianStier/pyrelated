@@ -1,22 +1,19 @@
 from cleo.commands.command import Command
 from cleo.helpers import argument, option
 
+
 class GreetCommand(Command):
     name = "greet"
     description = "Greets someone"
     arguments = [
-        argument(
-            "name",
-            description="Who do you want to greet?",
-            optional=True
-        )
+        argument("name", description="Who do you want to greet?", optional=True)
     ]
     options = [
         option(
             "yell",
             "y",
             description="If set, the task will yell in uppercase letters",
-            flag=True
+            flag=True,
         )
     ]
 

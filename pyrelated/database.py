@@ -10,7 +10,7 @@ def bibtex():
     proxy = DatabaseProxy("./")
     return proxy.use("bibtex")
 
-    
+
 def _canonicalize_name(name: str):
     return name.lower().strip()
 
