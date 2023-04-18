@@ -40,11 +40,14 @@ class DatabaseProxy:
         assert name_db is not None
         name_db = _canonicalize_name(name_db)
 
-        match name_db:
-            case "yaml":
-                return YamlDatabase(self._path)
-            case "bibtex":
-                return BibtexDatabase(self._path)
+        if name_db == "yaml":
+            return YamlDatabase(self._path)
+        elif name_db == "bibtex":
+            return BibtexDatabase(self._path)
+
+        raise NotImplementedError(
+            f"No implementation for the requested db type {name_db} available."
+        )
 
 
 class YamlDatabase(Database):

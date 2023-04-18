@@ -6,6 +6,7 @@
 
 
 # Practices & Conventions
+- ``poetry run python -m pyrelated.console.application config``
 
 ## Publishing
 ```bash

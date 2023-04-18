@@ -54,6 +54,8 @@ def old_flatten(a: dict, prefix: str = None, path: list = None) -> dict:
 
 class Cfg:
     NAMES_FILES_CONFIG = "names_files_config"
+    PATHS_CONFIG = "paths_config"
+    SCHOLARLY_USEPROXY = "scholarly_useproxy"
 
 
 class Config:
@@ -73,6 +75,7 @@ class Config:
                 "config": os.path.expanduser("~/.config/pyrelated/"),
                 "cache": os.path.expanduser("~/.cache/pyrelated/"),
             },
+            "scholarly": {"useproxy": False},
             "names": {"files": {"config": ".pyrelated"}},
         },
     }
@@ -118,6 +121,26 @@ class Config:
         key = query[-1]
         path = "pyrelated." + ".".join(query[:-1]) if len(query) > 1 else "pyrelated"
         return self._config[path][key]
+
+    def get_default(self, key: str):
+        # First use global config values
+        conf = self._default_config["global"]
+        # Second merge local
+        merge(conf, self._default_config["local"])
+        flattened = flatten(conf, prefix="pyrelated")
+
+        query = key.split("_")
+        key = query[-1]
+        path = "pyrelated." + ".".join(query[:-1]) if len(query) > 1 else "pyrelated"
+
+        return flattened[path][key]
+
+    def set(self, key: str, value):
+        query = key.split("_")
+        key = query[-1]
+        path = "pyrelated." + ".".join(query[:-1]) if len(query) > 1 else "pyrelated"
+        self._config[path][key] = value
+        return self
 
     def save(self, path):
         path_base = os.path.dirname(path)
