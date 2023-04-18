@@ -5,6 +5,7 @@ You can
 - create awesome lists with yaml and bibtex and use pyrelated to manage it
 - search through and categorize your local bibtex files
 
+**NOTE** this project is currently under development
 
 **Install:**
 - ``poetry add pyrelated``
@@ -12,15 +13,36 @@ You can
 
 
 # Examples
-**Interface**
-- ``pyrelated search "Albert Einstein"`` - outputs results from a scholarly search and caches locally
+
+## Application
+**Loading**
+- From bibtex ``pyrelated import publications.bib``
+- From yaml ``pyrelated import backup.yaml``
+
+**Writing**
+- ``pyrelated export project-xyz publications.bib``
+- ``pyrelated export project-xyz backup.yaml``
+
+**Local DB**
+- ``pyrelated context list``
+- ``pyrelated context add project-xyz``
+- ``pyrelated context delete projex-xyz``
+- ``pyrelated stats``
+
+**Searching**
+- ``pyrelated search "Albert Einstein"`` - outputs results from the default search and caches locally
+- ``pyrelated search --arxiv "1904.08166"`` - search arxiv with e.g. an arxiv identifier
+- ``pyrelated search --semanticscholar "Alan M. Turing"``
 - ``pyrelated search --scholarly "Albert Einstein"``
 - ``pyrelated add "Albert Einstein"`` - search for bibtex entries with scholarly and add to your managed database interactively
+
+**Configuration** of *pyrelated*
 - ``pyrelated --db ./data``
 - ``pyrelated config`` Show local config keys
 - ``pyrelated config cache /home/name/.cache/pyrelated/`` Set another home cache folder for the current dir in *.pyrelated*
 
-**API**
+
+## Python API
 ```
 import pyrelated
 
