@@ -1,43 +1,8 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
-
 from scholarly import ProxyGenerator, scholarly
 
-from pyrelated.config import Cfg
-
-
-class Result:
-    author_gids: list
-    author_names: list
-    abstract: str
-    _is_lightweight: bool = True
-
-    @property
-    def lightweight(self):
-        return self._is_lightweight
-
-    @lightweight.setter
-    def lightweight(self, flag):
-        self._is_lightweight = bool(flag)
-
-
-class Search:
-    @staticmethod
-    def driver(config, name) -> Search:
-        use_proxy = config.get(Cfg.SCHOLARLY_USEPROXY)
-        if use_proxy is None or use_proxy == "False":
-            use_proxy = False
-        use_proxy = bool(use_proxy)
-
-        if name == "scholarly":
-            return ScholarlySearch(use_proxy=use_proxy)
-        raise NotImplementedError(
-            f"No implementation found for your requested driver '{name}'"
-        )
-
-    def search_generic(self, text: str) -> Iterable[Result]:
-        raise NotImplementedError()
+from pyrelated.search.base import Result, Search
 
 
 class ScholarlySearch(Search):

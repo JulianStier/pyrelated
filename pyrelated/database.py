@@ -1,14 +1,14 @@
-from pyrelated.search import Result
+from __future__ import annotations
+
+from pyrelated.search.base import Result
 
 
 def yaml():
-    proxy = DatabaseProxy("./")
-    return proxy.use("yaml")
+    return Database.use("yaml")
 
 
 def bibtex():
-    proxy = DatabaseProxy("./")
-    return proxy.use("bibtex")
+    return Database.use("bibtex")
 
 
 def _canonicalize_name(name: str):
@@ -16,6 +16,20 @@ def _canonicalize_name(name: str):
 
 
 class Database:
+    @staticmethod
+    def use(path_data: str, name_db: str) -> Database:
+        assert name_db is not None
+        name_db = _canonicalize_name(name_db)
+
+        if name_db == "yaml":
+            return YamlDatabase(path_data)
+        elif name_db == "bibtex":
+            return BibtexDatabase(path_data)
+
+        raise NotImplementedError(
+            f"No implementation for the requested db type {name_db} available."
+        )
+
     def add(self, result: Result):
         raise NotImplementedError()
 
@@ -30,24 +44,6 @@ class Database:
 
     def add_category(self, name: str):
         raise NotImplementedError()
-
-
-class DatabaseProxy:
-    def __init__(self, path_data: str):
-        self._path = path_data
-
-    def use(self, name_db: str) -> Database:
-        assert name_db is not None
-        name_db = _canonicalize_name(name_db)
-
-        if name_db == "yaml":
-            return YamlDatabase(self._path)
-        elif name_db == "bibtex":
-            return BibtexDatabase(self._path)
-
-        raise NotImplementedError(
-            f"No implementation for the requested db type {name_db} available."
-        )
 
 
 class YamlDatabase(Database):

@@ -17,6 +17,7 @@ scholarly = "^1.7.11"
 bibtexparser = "^1.4.0"
 cleo = "^2.0.1"
 importlib-metadata = "^6.4.1"
+sqlalchemy = "^2.0.9"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.2"

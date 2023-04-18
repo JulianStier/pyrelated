@@ -1,5 +1,9 @@
 # pyrelated
-Create awesome lists with yaml and bibtex and use pyrelated to manage it.
+With *pyrelated* you can search for related bibliography, persist and edit bibtex files and annotate them with custom taxonomy.
+You can
+- merge and manage bibtex entries in custom file paths
+- create awesome lists with yaml and bibtex and use pyrelated to manage it
+- search through and categorize your local bibtex files
 
 
 **Install:**
