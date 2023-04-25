@@ -4,7 +4,7 @@ from cleo.commands.command import Command
 from cleo.helpers import argument, option
 
 from pyrelated.config import Cfg, Config
-from pyrelated.search import Search
+from pyrelated.search.base import Search
 
 
 class SearchCommand(Command):

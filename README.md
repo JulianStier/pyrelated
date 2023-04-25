@@ -17,6 +17,7 @@ You can
 ## Application
 **Loading**
 - From bibtex ``pyrelated import publications.bib``
+- From bibtex ``pyrelated import -C project-abc publications.bib``
 - From yaml ``pyrelated import backup.yaml``
 
 **Writing**

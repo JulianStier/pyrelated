@@ -23,7 +23,7 @@ class Database:
 
         if name_db == "yaml":
             return YamlDatabase(path_data)
-        elif name_db == "bibtex":
+        elif name_db == "bib" or name_db == "bibtex":
             return BibtexDatabase(path_data)
 
         raise NotImplementedError(
